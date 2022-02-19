@@ -1,5 +1,5 @@
 # OnlineCourseProject_Microservices
- Udemy benzeri bir online kurs satış platformunu Microservice mimarisi kullanarak yapacağım.
- 
- Projede kullanılacak yapılar:
+ We buy an online sales platform like Udemy using Microservice.
+
+ Projecting systems:
  - Dockers, .Net Web API, AspNet Core Microservices, RabbitMQ , MSSQL Server, MongoDB, Api Gateway Ocelot
