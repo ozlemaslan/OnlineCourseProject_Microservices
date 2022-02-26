@@ -11,3 +11,5 @@ Portainer using :
 
 ![image](https://user-images.githubusercontent.com/37321747/155847341-e9a7d348-d41f-4eaa-b048-8740bbb5c6d3.png)
 
+- Later, when we connect mongodb://localhost:27017 with MongoDbCompass and run the project, we can see the database.
+
