@@ -6,8 +6,8 @@
 
 Portainer using :
 
--First of all, go to https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux and type the necessary commands from powershell.
--Then I used the port as 9000 and gave the mongodb port as 27017 as below.
+- First of all, go to https://docs.portainer.io/v/ce-2.9/start/install/server/docker/linux and type the necessary commands from powershell.
+- Then I used the port as 9000 and gave the mongodb port as 27017 as below.
 
 ![image](https://user-images.githubusercontent.com/37321747/155847341-e9a7d348-d41f-4eaa-b048-8740bbb5c6d3.png)
 
