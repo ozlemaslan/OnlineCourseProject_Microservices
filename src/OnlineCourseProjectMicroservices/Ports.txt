@@ -1,3 +1,6 @@
 ******Portlar**********
 Catalog services Portu-> 5011 
   -"applicationUrl": "http://localhost:5011",
+  
+Basket services Portu-> 5011 
+  -"applicationUrl": "http://localhost:5013",
