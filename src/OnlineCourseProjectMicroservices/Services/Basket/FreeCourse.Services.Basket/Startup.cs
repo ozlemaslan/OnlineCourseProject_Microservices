@@ -1,3 +1,5 @@
+using FreeCourse.Services.Basket.Services;
+using FreeCourse.Services.Basket.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -27,6 +30,23 @@ namespace FreeCourse.Services.Basket
         {
 
             services.AddControllers();
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<IBasketService, BasketService>();
+            services.Configure<RedisSettings>(Configuration.GetSection("RedisSettings"));
+
+            //redis eklentisi
+            services.AddSingleton<RedisService>(sp =>
+            {
+                var redisSettings = sp.GetRequiredService<IOptions<RedisSettings>>().Value;
+
+                var redis = new RedisService(redisSettings.Host, redisSettings.Port); //host ve portu verdik
+
+                redis.Connect(); //redise baðlantý
+
+                return redis;
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FreeCourse.Services.Basket", Version = "v1" });
@@ -44,7 +64,7 @@ namespace FreeCourse.Services.Basket
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
