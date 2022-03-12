@@ -1,11 +1,8 @@
 ﻿using FreeCourse.Services.Basket.Dtos;
 using FreeCourse.Services.Basket.Services;
 using FreeCourse.Shared.ControllerBases;
-using Microsoft.AspNetCore.Http;
+using FreeCourse.Shared.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FreeCourse.Services.Basket.Controllers
