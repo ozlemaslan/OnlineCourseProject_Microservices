@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FreeCource.Services.Order.Domain\FreeCource.Services.Order.Domain.csproj" />
-    <ProjectReference Include="..\FreeCourse.Services.Order.Infrastructure\FreeCourse.Services.Order.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

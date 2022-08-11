@@ -7,3 +7,6 @@ Basket services Portu-> 5011
 
 Identity Server 
   -"applicationUrl": "http://localhost:5001",
+
+Order Api
+  -"applicationUrl": "http://localhost:5015",
