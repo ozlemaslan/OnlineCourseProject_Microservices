@@ -5,7 +5,7 @@ namespace FreeCourse.Shared.ControllerBases
     using Microsoft.AspNetCore.Mvc;
     public class CustomBaseController : ControllerBase
     {
-        public IActionResult CreateActionResultInstance<T>(ResponseDto<T> response)
+        public IActionResult CreateActionResultInstance<T>(Response<T> response)
         {
             return new ObjectResult(response)
             {

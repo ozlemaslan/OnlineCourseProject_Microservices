@@ -37,6 +37,7 @@ namespace FreeCourse.Services.Catalog
 
             services.Configure<DatabaseSettings>(Configuration.GetSection("DatabaseSettings"));
 
+            //Options pattern kullandým. Çünkü configuration ayarlarýný hýzlý bir þekilde dependency injection yaparýz. 
             services.AddSingleton<IDatabaseSettings>(sp =>
             {
                 return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;

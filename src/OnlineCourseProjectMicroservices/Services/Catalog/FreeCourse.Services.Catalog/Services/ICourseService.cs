@@ -9,16 +9,16 @@ namespace FreeCourse.Services.Catalog.Services
 {
     public interface ICourseService
     {
-        Task<ResponseDto<List<CourseDto>>> GetAllAsync();
+        Task<Response<List<CourseDto>>> GetAllAsync();
 
-        Task<ResponseDto<CourseDto>> GetByIdAsync(string id);
+        Task<Response<CourseDto>> GetByIdAsync(string id);
 
-        Task<ResponseDto<List<CourseDto>>> GetAllByUserIdAsync(string userId);
+        Task<Response<List<CourseDto>>> GetAllByUserIdAsync(string userId);
 
-        Task<ResponseDto<CourseDto>> CreateAsync(CourseCreateDto courseCreateDto);
+        Task<Response<CourseDto>> CreateAsync(CourseCreateDto courseCreateDto);
 
-        Task<ResponseDto<NoContent>> UpdateAsync(CourseUpdateDto courseUpdateDto);
+        Task<Response<NoContent>> UpdateAsync(CourseUpdateDto courseUpdateDto);
 
-        Task<ResponseDto<NoContent>> DeleteAsync(string id);
+        Task<Response<NoContent>> DeleteAsync(string id);
     }
 }

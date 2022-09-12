@@ -24,31 +24,31 @@ namespace FreeCourse.Services.Catalog.Services
             _mapper = mapper;
         }
 
-        public async Task<ResponseDto<List<CategoryDto>>> GetAllCategoryAsync()
+        public async Task<Response<List<CategoryDto>>> GetAllCategoryAsync()
         {
             var list = await _categoryCollection.Find(category => true).ToListAsync(); //db deki Category tablosunu çektik
 
             //Burada ise category tablosunu CategoryDto listesine mappledik.
-            return ResponseDto<List<CategoryDto>>.Success(_mapper.Map<List<CategoryDto>>(list), 200);
+            return Response<List<CategoryDto>>.Success(_mapper.Map<List<CategoryDto>>(list), 200);
         }
 
-        public async Task<ResponseDto<CategoryDto>> CreateCategoryAsync(CategoryDto categoryDto)
+        public async Task<Response<CategoryDto>> CreateCategoryAsync(CategoryDto categoryDto)
         {
             var category = _mapper.Map<Category>(categoryDto);
             await _categoryCollection.InsertOneAsync(category);
 
-            return ResponseDto<CategoryDto>.Success(_mapper.Map<CategoryDto>(category), 200);
+            return Response<CategoryDto>.Success(_mapper.Map<CategoryDto>(category), 200);
         }
 
-        public async Task<ResponseDto<CategoryDto>> GetByIdAsync(string id)
+        public async Task<Response<CategoryDto>> GetByIdAsync(string id)
         {
 
             var category = await _categoryCollection.Find(a => a.Id == id).FirstOrDefaultAsync();
             if (category == null)
             {
-                return ResponseDto<CategoryDto>.Fail("Category bulunamadı...", 404);
+                return Response<CategoryDto>.Fail("Category bulunamadı...", 404);
             }
-            return ResponseDto<CategoryDto>.Success(_mapper.Map<CategoryDto>(category), 200);
+            return Response<CategoryDto>.Success(_mapper.Map<CategoryDto>(category), 200);
         }
     }
 }

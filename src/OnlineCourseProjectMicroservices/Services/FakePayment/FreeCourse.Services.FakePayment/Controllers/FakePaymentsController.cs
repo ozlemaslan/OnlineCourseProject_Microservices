@@ -12,7 +12,7 @@ namespace FreeCourse.Services.FakePayment.Controllers
         [HttpPost]
         public async Task<IActionResult> ReceivePayment()
         {
-            return CreateActionResultInstance(ResponseDto<NoContent>.Success(200));
+            return CreateActionResultInstance(Response<NoContent>.Success(200));
         }
     }
 }
