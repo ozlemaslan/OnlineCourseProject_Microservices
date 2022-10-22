@@ -40,21 +40,20 @@ namespace FreeCourse.IdentityServer
 
             try
             {
+
                 var host = CreateHostBuilder(args).Build();
 
-                using (var scope = host.Services.CreateScope())
+                using (var scope= host.Services.CreateScope())
                 {
                     var serviceProvider = scope.ServiceProvider;
-
                     var applicationDbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
                     applicationDbContext.Database.Migrate();
-
                     var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
                     if (!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser { UserName = "fcakiroglu16", Email = "f-cakiroglu@outlook.com", City = "Ankara" }, "Password12*").Wait();
+                        userManager.CreateAsync(new ApplicationUser { UserName = "oaslan", Email = "a@outlook.com", City = "Ankara" }, "Password12*").Wait();
                     }
                 }
 
