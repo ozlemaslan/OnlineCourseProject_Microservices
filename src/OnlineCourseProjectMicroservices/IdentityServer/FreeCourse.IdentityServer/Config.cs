@@ -10,6 +10,7 @@ namespace FreeCourse.IdentityServer
 {
     public static class Config
     {
+        //API'lar tanımlanır.
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("resource_catalog"){Scopes={"catalog_fullpermission"}},
@@ -31,6 +32,7 @@ namespace FreeCourse.IdentityServer
                        new IdentityResource(){ Name="roles", DisplayName="Roles", Description="Kullanıcı rolleri", UserClaims=new []{ "role"} }
                    };
 
+        //API'larda kullanılacak izinleri tanımlarız.
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
@@ -46,6 +48,7 @@ namespace FreeCourse.IdentityServer
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
+        //API'ları kullanacak client'lar tanımlanır.
         public static IEnumerable<Client> Clients =>
             new Client[]
             {
