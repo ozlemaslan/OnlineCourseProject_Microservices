@@ -32,6 +32,10 @@ namespace FreeCourse.Web.Services
             _serviceApiSettings = serviceApiSettings.Value;
         }
 
+        /// <summary>
+        ///  Method refresh token alyor. Yani yeniden token üretmiş oluyoruz.
+        /// </summary>
+        /// <returns></returns>
         public async Task<TokenResponse> GetAccessByRefreshToken()
         {
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
