@@ -5,7 +5,7 @@ namespace FreeCourse.Shared.Dtos
 {
     public class Response<T>
     {
-        public T Data { get; set; }
+        public T Data { get; set; } //başarılı olursa Data dönecek
 
         [JsonIgnore]
         public int StatusCode { get; set; }
@@ -13,7 +13,7 @@ namespace FreeCourse.Shared.Dtos
         [JsonIgnore]
         public bool IsSuccessful { get; set; }
 
-        public List<string> Errors { get; set; }
+        public List<string> Errors { get; set; } //hatalı olma durumunda 
 
         public static Response<T> Success(T data, int statusCode)
         {
