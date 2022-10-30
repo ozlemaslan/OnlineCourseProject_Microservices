@@ -57,7 +57,7 @@ namespace FreeCourse.Web.Services
                 throw newToken.Exception;
             }
 
-            await _clientAccessTokenCache.SetAsync("WbClientToken", newToken.AccessToken, newToken.ExpiresIn); //cache e yeni token değerini ve expire süresini atadık.
+            await _clientAccessTokenCache.SetAsync("WebClientToken", newToken.AccessToken, newToken.ExpiresIn); //cache e yeni token değerini ve expire süresini atadık.
 
             return newToken.AccessToken;
         }
