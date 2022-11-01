@@ -11,12 +11,21 @@ namespace FreeCourse.Web.Services
     public class CatalogService : ICatalogService
     {
         private readonly HttpClient _client;
-        public CatalogService(HttpClient client)
+        private readonly IPhotoStockService _photoStockService; 
+        public CatalogService(HttpClient client, IPhotoStockService photoStockService)
         {
             _client = client;
+            _photoStockService = photoStockService;
         }
         public async Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
         {
+            var url =await _photoStockService.UploadPhoto(courseCreateInput.PhotoFormFile);
+
+            if (url!=null)
+            {
+                courseCreateInput.Picture = url.Url; 
+            }
+
             var response = await _client.PostAsJsonAsync("courses", courseCreateInput);
 
             return response.IsSuccessStatusCode;
@@ -94,6 +103,13 @@ namespace FreeCourse.Web.Services
 
         public async Task<bool> UpdateCourseAsync(CourseUpdateInput courseUpdateInput)
         {
+            var url = await _photoStockService.UploadPhoto(courseUpdateInput.PhotoFormFile);
+
+            if (url != null)
+            {
+                courseUpdateInput.Picture = url.Url;
+            }
+
             var response = await _client.PutAsJsonAsync("courses", courseUpdateInput);
 
             return response.IsSuccessStatusCode;
