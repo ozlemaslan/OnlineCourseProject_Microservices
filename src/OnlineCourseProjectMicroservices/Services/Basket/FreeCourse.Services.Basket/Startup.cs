@@ -1,5 +1,6 @@
 using FreeCourse.Services.Basket.Services;
 using FreeCourse.Services.Basket.Settings;
+using FreeCourse.Shared.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -47,6 +48,7 @@ namespace FreeCourse.Services.Basket
 
             services.AddHttpContextAccessor();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
             services.Configure<RedisSettings>(Configuration.GetSection("RedisSettings"));
 
             //redis eklentisi

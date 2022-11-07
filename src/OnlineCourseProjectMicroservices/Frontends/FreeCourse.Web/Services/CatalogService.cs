@@ -1,4 +1,5 @@
 ﻿using FreeCourse.Shared.Dtos;
+using FreeCourse.Web.Helpers;
 using FreeCourse.Web.Models.Catalogs;
 using FreeCourse.Web.Services.Interfaces;
 using System.Collections.Generic;
@@ -11,11 +12,13 @@ namespace FreeCourse.Web.Services
     public class CatalogService : ICatalogService
     {
         private readonly HttpClient _client;
-        private readonly IPhotoStockService _photoStockService; 
-        public CatalogService(HttpClient client, IPhotoStockService photoStockService)
+        private readonly IPhotoStockService _photoStockService;
+        private readonly PhotoHelper _photoHelper;
+        public CatalogService(HttpClient client, IPhotoStockService photoStockService, PhotoHelper photoHelper)
         {
             _client = client;
             _photoStockService = photoStockService;
+            _photoHelper = photoHelper;
         }
         public async Task<bool> CreateCourseAsync(CourseCreateInput courseCreateInput)
         {
@@ -65,7 +68,10 @@ namespace FreeCourse.Web.Services
             }
 
             var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
-
+            responseSuccess.Data.ForEach(x =>
+            {
+                x.StockPictureUrl = _photoHelper.GetPhotoStockUrl(x.Picture);
+            });
             return responseSuccess.Data;
         }
 
@@ -81,7 +87,10 @@ namespace FreeCourse.Web.Services
             }
 
             var responseSuccess = await response.Content.ReadFromJsonAsync<Response<List<CourseViewModel>>>();
-
+            responseSuccess.Data.ForEach(x =>
+            {
+                x.StockPictureUrl = _photoHelper.GetPhotoStockUrl(x.Picture);
+            });
             return responseSuccess.Data;
         }
 
@@ -98,6 +107,8 @@ namespace FreeCourse.Web.Services
 
             var responseSuccess = await response.Content.ReadFromJsonAsync<Response<CourseViewModel>>();
 
+            responseSuccess.Data.StockPictureUrl = _photoHelper.GetPhotoStockUrl(responseSuccess.Data.Picture);
+
             return responseSuccess.Data;
         }
 
@@ -107,6 +118,7 @@ namespace FreeCourse.Web.Services
 
             if (url != null)
             {
+                await _photoStockService.DeletePhoto(courseUpdateInput.Picture);
                 courseUpdateInput.Picture = url.Url;
             }
 
